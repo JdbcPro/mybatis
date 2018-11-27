@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 1、mybatis使用properties来引入外部properties配置文件的内容 resource 引入类路径下资源 url 引入网络路径或磁盘路径下资源 -->
+    <properties resource="dbconfig.properties"></properties>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <environments default="mariadb">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${mysql.driver}"/>
+                <property name="url" value="${mysql.url}"/>
+                <property name="username" value="${mysql.user}"/>
+                <property name="password" value="${mysql.pwd}"/>
+            </dataSource>
+        </environment>
+        <environment id="mariadb">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${mariadb.driver}"/>
+                <property name="url" value="${mariadb.url}"/>
+                <property name="username" value="${mariadb.user}"/>
+                <property name="password" value="${mariadb.pwd}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 对应的映射 -->
+    <mappers>
+
+        <mapper resource="mappers/EmployeeMapper.xml"></mapper>
+        <mapper resource="mappers/EmployeeMapperPlus.xml"></mapper>
+        <mapper resource="mappers/DepartmentMapper.xml"></mapper>
+
+    </mappers>
+</configuration>
